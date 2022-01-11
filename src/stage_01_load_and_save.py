@@ -24,7 +24,6 @@ def get_data(config_path):
     save_local_df(df, raw_local_data, header=True)
 
 
-
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
@@ -32,5 +31,7 @@ if __name__ == "__main__":
 
     try:
         data = get_data(config_path=parsed_args.config)
+        logging.info(f"reading and writing raw data stage completed")
     except Exception as e:
-        raise e
+        logging.error(e)
+        # raise e

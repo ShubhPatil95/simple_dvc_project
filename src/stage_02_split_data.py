@@ -6,9 +6,15 @@ from src.utils.common_utils import (
     save_local_df,
 )
 from sklearn.model_selection import train_test_split
+import logging
+
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+logging.basicConfig(level=logging.DEBUG, format=logging_str)
+
+
+
 
 def split_and_save_data(config_path):
-    
     config = read_params(config_path)
 
     artifacts = config["artifacts"]
@@ -19,7 +25,7 @@ def split_and_save_data(config_path):
     processed_data_dir = split_data["processed_data_dir"]
     test_data_path = split_data["test_path"]
     train_data_path = split_data["train_path"]
-    
+
     create_dir([processed_data_dir])
 
     base = config["base"]
@@ -41,5 +47,7 @@ if __name__ == "__main__":
 
     try:
         data = split_and_save_data(config_path=parsed_args.config)
+        logging.info("split data stage completed")
     except Exception as e:
-        raise e
+        logging.error(e)
+        # raise e
