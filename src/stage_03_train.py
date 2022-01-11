@@ -1,6 +1,7 @@
 import pandas as pd
 import argparse
 from src.utils.common_utils import read_params,create_dir,save_reports
+
 from sklearn.linear_model import ElasticNet
 import joblib
 
@@ -33,6 +34,20 @@ def train(config_path):
     lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=random_seed)
     lr.fit(train_x, train_y)
 
+    model_dir = artifacts["model_dir"]
+    model_path = artifacts["model_path"]
+
+    create_dir([model_dir, reports_dir])
+
+    params = {
+        "alpha": alpha,
+        "l1_ratio": l1_ratio,
+    }
+
+    save_reports(params_file, params)
+
+    joblib.dump(lr, model_path)
+
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
@@ -41,5 +56,6 @@ if __name__ == "__main__":
 
     try:
         data = train(config_path=parsed_args.config)
+
     except Exception as e:
         raise e

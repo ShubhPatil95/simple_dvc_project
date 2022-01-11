@@ -1,5 +1,3 @@
-
-  
 base:
   project: simple-dvc-project
   random_state: 42
