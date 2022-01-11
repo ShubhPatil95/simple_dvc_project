@@ -10,7 +10,7 @@ setup(
     description="A small package for dvc ml pipeline demo",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/c17hawke/simple-dvc-project",
+    url="https://github.com/ShubhPatil95/simple_dvc_project.git",
     author_email="shubhamrpatil122@gmail.com",
     # package_dir={"": "src"},
     # packages=find_packages(where="src"),
