@@ -36,5 +36,6 @@ def save_local_df(df, df_path, header=False):
 def save_reports(filepath: str, report: dict):
     with open(filepath, "w") as f:
         json.dump(report, f, indent=4)
+    logging.info(f"detail of report {report}")        
     logging.info(f"reports saved at {filepath}")        
         
